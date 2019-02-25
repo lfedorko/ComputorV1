@@ -1,4 +1,4 @@
-# ComputorV1 | 42 project Unit Factory
+# ComputorV1 | 42 project
 Solves simple quadratic equation.
 
 ### INPUT
