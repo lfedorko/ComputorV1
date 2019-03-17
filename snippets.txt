@@ -27,3 +27,4 @@ Quantifiers:
 
 
 #### Sample Regexs ####
+((([+-]?)\d+((\.\d+)?)\*)?)X\^\d+
