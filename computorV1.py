@@ -16,6 +16,8 @@ def msg_error(msg):
     exit(1)
 
 
+def check_degree(dict):
+        pass
 
 def validate(equ):
     equ = equ.replace(" ", "")
@@ -24,7 +26,8 @@ def validate(equ):
     left_part, right_part = equ.split('=')
     dict = {}
     dict = find_monomial(left_part, 'left', dict)
-    find_monomial(right_part, 'right', dict)
+    dict = find_monomial(right_part, 'right', dict)
+    check_degree(dict)
 
 
 def change_sign(coef):
@@ -41,8 +44,8 @@ def find_monomial(equ, word, list):
     if equ == "0":
         return list
     else:
-        for match icoef, pow = match.group().split("*X^")n pattern.finditer(equ):
-
+        for match in pattern.finditer(equ):
+            coef, pow = match.group().split("*X^")
             if word == 'right':
                 sign = -1
             if pow in list:
