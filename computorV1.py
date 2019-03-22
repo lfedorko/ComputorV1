@@ -1,14 +1,11 @@
 import re
 from sys import argv
-
 from solver import solve
 
-BBLUE = '\033[94m'
 GREEN = '\033[92m'
 BRED = '\033[91m'
 ENDC = '\033[0m'
 BOLD = '\033[1m'
-UNDERLINE = '\033[4m'
 
 pattern = re.compile(r'((([+-]?)\d+((\.\d+)?)\*)?)X\^\d+')
 
@@ -20,7 +17,7 @@ def msg_error(msg):
 
 def check_degree(_dict):
     for key, value in _dict.items():
-        if -1 < key > 2 and value > 0:
+        if -1 < key > 2 and value != 0:
             msg_error(f"Polynomial degree:{key}")
             msg_error("The polynomial degree is stricly greater than 2.")
 
@@ -31,7 +28,8 @@ def show_reduced_form(_dict):
         sign = ''
         if value > 0:
             sign = '+'
-        res += f"{sign} {value} * X ^ {key} "
+        if str(value) != '0':
+            res += f"{sign} {value} * X ^ {key}"
     print(res + " = 0")
 
 
