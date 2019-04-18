@@ -19,7 +19,7 @@ def solve_zero(c):
     if c == 0:
         exp = 'True for all X'
     else:
-        exp = 'X = 0'
+        exp = 'There is no solution!'
     output_result(0, exp)
 
 
@@ -40,7 +40,7 @@ def solve_quadratic(a, b, c):
             f'X2 = (-b + D ^ 1/2) / 2 * a = {-b} + {D ** .5} / {2 * a} = {x2}\n'
         res = f'{x1}, {x2}'
     elif D == 0:
-        res = -b /( 2 * a)
+        res = -b / (2 * a)
         exp += f', D = 0, one real root\nX = -b / 2 * a = {-b} / 2 * {a} = {res}\n'
     else:
         real = (-b) / (2 * a)

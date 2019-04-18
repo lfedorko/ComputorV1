@@ -8,7 +8,7 @@ ENDC = '\033[0m'
 BOLD = '\033[1m'
 
 pattern = re.compile(r'((([+-]?)\d+((\.\d+)?)\*)?)X\^\d+')
-
+pattern2 = re.compile(r'[+-]?(\d+(\.\d+)*\*)*X')
 
 def msg_error(msg):
     print(BOLD + BRED + "ERROR: " + ENDC + msg)
@@ -19,7 +19,7 @@ def check_degree(_dict):
     for key, value in _dict.items():
         if -1 < key > 2 and value != 0:
             msg_error(f"Polynomial degree:{key}")
-            msg_error("The polynomial degree is stricly greater than 2.")
+            msg_error("The polynomial degree is greater than 2.")
 
 
 def show_reduced_form(_dict):
@@ -38,7 +38,7 @@ def validate(equ):
     if not re.fullmatch(r'[X.^\d+*-]{1,}=[X.^\d+*-]{1,}', equ):
         msg_error("Incorrect symbol!")
     left_part, right_part = equ.split('=')
-    coef = {0 : 0, 1:0 , 2:0}
+    coef = {0 : 0, 1 : 0, 2: 0}
     coef = find_monomial(left_part, 'left', coef)
     coef = find_monomial(right_part, 'right', coef)
     coef = dict(sorted(coef.items(), reverse=True))
@@ -74,8 +74,10 @@ def reduce(equ):
 
 
 if __name__ == '__main__':
-    if len(argv) != 2:
-        msg_error("Argument != 2")
+    if len(argv) < 2:
+        msg_error("Argument < 2")
     else:
-        coef_of_equ = validate(argv[1])
-        solve(coef_of_equ[2], coef_of_equ[1], coef_of_equ[0])
+        for i in range(1, len(argv)):
+            print(BOLD + GREEN + "THE EQUATION #" + str(i) + ENDC)
+            coef_of_equ = validate(argv[i])
+            solve(coef_of_equ[2], coef_of_equ[1], coef_of_equ[0])
