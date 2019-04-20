@@ -13,7 +13,7 @@ Python3.6+
 ## How to run?
 
 ```console
-foo@bar:~$ ./computorV1.py "2+2 = 4"
+foo@bar:~$ python computorV1.py "2+2 = 4"
 ```
 ## Output
 • The reduced form of the equation.
