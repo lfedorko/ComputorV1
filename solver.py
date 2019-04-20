@@ -10,7 +10,7 @@ def solve(a, b, c, expl=False):
     if a == 0 and b == 0:
         solve_zero(c)
     elif a == 0:
-        solve_linear(b, c,)
+        solve_linear(b, c, expl)
     else:
         solve_quadratic(a, b, c)
 
@@ -25,9 +25,7 @@ def solve_zero(c):
 
 def solve_linear(b, c, solve=False):
     res = -c / b
-    exp = ''
-    if solve:
-        exp = f"X = - c / b = ({-c} / {b}) = {res}\n"
+    exp = f"X = - c / b = ({-c} / {b}) = {res}\n"
     output_result(1, res, solve=exp)
 
 
@@ -37,10 +35,9 @@ def solve_quadratic(a, b, c, solve=False):
     if D > 0:
         x1 = (-b + (D ** .5)) / (2 * a)
         x2 = (-b - (D ** .5)) / (2 * a)
-        if solve:
-            exp += ', D > 0, two real roots\n'
-            exp += f'X1 = (-b + D ^ 1/2) / 2 * a = {-b} - {D ** .5} / {2 * a} = {x1}\n' \
-                f'X2 = (-b + D ^ 1/2) / 2 * a = {-b} + {D ** .5} / {2 * a} = {x2}\n'
+        exp += ', D > 0, two real roots\n'
+        exp += f'X1 = (-b + D ^ 1/2) / 2 * a = {-b} - {D ** .5} / {2 * a} = {x1}\n' \
+            f'X2 = (-b + D ^ 1/2) / 2 * a = {-b} + {D ** .5} / {2 * a} = {x2}\n'
         res = f'{x1}, {x2}'
     elif D == 0:
         res = -b / (2 * a)
@@ -48,12 +45,14 @@ def solve_quadratic(a, b, c, solve=False):
             exp += f', D = 0, one real root\nX = -b / 2 * a = {-b} / 2 * {a} = {res}\n'
     else:
         real = (-b) / (2 * a)
-        print(b/(2*a))
-        print(f'a = {a} b={b / (2 * a)} c={c}')
         im = ((4 * a * c - b * b) ** 0.5) / (2 * a)
-        if solve:
-            exp += f', D < 0, two imaginary roots\nX1 = -b / 2 * a ± (((4 * a * c - b * b) ^ 0.5) / 2) * i =  {real} ± {im}i\n'
-        res = f'{real} + {im}i, {real} - {im}i'
+        exp += f', D < 0, two imaginary roots\nX1, X2 = -b / 2 * a ± (((4 * a * c - b * b) ^ 0.5) / 2) * i =  {real} ± {im}i\n'
+        if im < 0:
+            res = f'{real}{im}i, {real}+{-1*im}i'
+        else:
+            res = f'{real} + {im}i, {real} - {im}i'
+            
+
     output_result(2, res, solve=exp + '\n')
 
 

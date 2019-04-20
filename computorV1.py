@@ -1,3 +1,5 @@
+#!/usr/local/bin/python3.6
+
 import re
 from sys import argv
 from solver import solve
@@ -57,7 +59,7 @@ def find_monomial(equ, word, list_of_coef):
 def check_degree(_dict):
     for key, value in _dict.items():
         if -1 < key > 2 and value != 0:
-            msg_error(f"Polynomial degree:{key}")
+            print(f"{BOLD}Polynomial degree:{ENDC}{key}")
             msg_error("The polynomial degree is greater than 2.")
 
 
@@ -92,12 +94,12 @@ if __name__ == '__main__':
     graphics = False
     if len(argv) < 2:
         msg_error("Argument < 2")
+    elif len(argv) > 11:
+        msg_error("Argument > 10")
     else:
         for i in range(1, len(argv)):
-            if '-g' in argv[i]:
-                graphics = True
-            else:
+            if len(argv) != 2:
                 print(BOLD + GREEN + "THE EQUATION #" + str(i) + ENDC)
-                coef_of_equ = validate(argv[i])
-                solve(coef_of_equ[2], coef_of_equ[1], coef_of_equ[0], graphics)
-
+            coef_of_equ = validate(argv[i])
+            solve(coef_of_equ[2], coef_of_equ[1], coef_of_equ[0])
+            
